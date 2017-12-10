@@ -1,0 +1,10 @@
+**~
+**.o
+**.so
+test_gsl
+test_binom
+test_pois
+python/build
+python/discrete_ars.c
+matlab/discrete_ars.mex*
+.idea
