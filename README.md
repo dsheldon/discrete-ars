@@ -1,22 +1,4 @@
-discrete_ars  Discrete adaptive rejection sampling
-Copyright (C) 2013 Daniel R. Sheldon, sheldon@cs.umass.edu
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
---------------------
-About this software
---------------------
+# discrete-ars
 
 This package contains an easy-to-use C implementation of the
 discrete adaptive rejection sampling (ARS) algorithm, a MATLAB
@@ -29,20 +11,18 @@ See below for instructions on:
 * Using the C function
 * Compilation
 * Using the MATLAB function
+* Using the Python wrapper
 
---------------------
-Using the C function
---------------------
+# Using the C function
 
 The quickest way to get started is by looking at the examples
-test_binom.c and test_pois.c and modifying them accordingly.
+`test_binom.c` and `test_pois.c` and modifying them accordingly.
 
-The C implementation is found in the files ars.c and ars.h. To
+The C implementation is found in the files `ars.c` and `ars.h`. To
 generate samples from your distribution, simply call the function
-discrete_ars().
+`discrete_ars()`, with prototype:
 
-PROTOTYPE
-
+~~~ .C
 int discrete_ars(double    *samples, 
 		 int       nsamples, 
 		 rand_fp   r,
@@ -52,7 +32,9 @@ int discrete_ars(double    *samples,
 		 double    ub , 
 		 double*   startpoints, 
 		 int       nstart);
+~~~
 
+~~~ .text
 RETURN VALUE
 
   The return value is 1 upon success, and 0 upon failure.
@@ -108,14 +90,15 @@ INPUT ARGUMENTS
 	       specified point.)
  
  nstart	       The number of startpoints provided      
+~~~
 
------------
-Compilation
------------
+# Compilation
 
 Compile the test programs like this:
 
-gcc -g test_binom.c ars.c -o test_binom
+~~~ .bash
+$ gcc -g test_binom.c ars.c -o test_binom
+~~~
 
 Modify this to suit your needs. 
 
@@ -123,20 +106,23 @@ The provided Makefile includes some more examples, including one that
 uses the Gnu Scientific Library (GSL) random number generator (on Mac OS
 X).
 
--------------------------
-Using the MATLAB function
--------------------------
+# Using the MATLAB function
 
-To compile, open MATLAB and run the script make.m in the command window:
+To compile, open MATLAB, change the the `matlab` subdirectory, and execute
+the script `make.m`. From MATLAB:
 
+~~~ .bash
+>> cd matlab
 >> make
+~~~
 
-The MATLAB function is also called discrete_ars().
+The MATLAB function is also called `discrete_ars()`.
 
-The quickest way to start is with the example in the file example.m. 
+The quickest way to start is with the example in the file `example.m`. 
 
 The usage is documented in the online help:
 
+~~~ .text
 >> help discrete_ars 
 
   DISCRETE_ARS Discrete adaptive rejection sampler
@@ -161,3 +147,15 @@ The usage is documented in the online help:
   RETURN VALUE
  
     samples   A vector of numbers drawn from the distribution.
+
+~~~
+
+# Python wrapper
+
+The Python wrapper is contained in the `python` subdirectory. Try this:
+
+~~~ .bash
+$ cd python
+$ python setup.py build_ext --inplace
+$ python example.py
+~~~
