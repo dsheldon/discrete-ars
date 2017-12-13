@@ -4,6 +4,7 @@
 test_gsl
 test_binom
 test_pois
+test_pois_2geo
 python/build
 python/discrete_ars.c
 matlab/discrete_ars.mex*
